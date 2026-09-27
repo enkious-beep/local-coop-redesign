@@ -497,6 +497,70 @@
       background: var(--sage);
     }
 
+    .program-list {
+      max-width: 950px;
+      margin: 42px auto 0;
+      display: grid;
+      gap: 18px;
+    }
+
+    .program-card {
+      margin: 0;
+      max-width: none;
+      border: 2px solid rgba(40,76,53,.14);
+      border-radius: 18px;
+      box-shadow: 0 7px 22px rgba(0,0,0,.04);
+    }
+
+    .program-card summary {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+    }
+
+    .program-card summary::after {
+      margin-left: auto;
+      flex: 0 0 auto;
+    }
+
+    .program-icon {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cream);
+      border-radius: 50%;
+      font-size: 1.7rem;
+    }
+
+    .program-title {
+      display: block;
+      font-size: 1.2rem;
+      line-height: 1.25;
+    }
+
+    .program-card .detail-body {
+      padding: 0 26px 28px 92px;
+    }
+
+    .program-card .detail-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .program-action {
+      margin-top: 22px;
+    }
+
+    .program-action .button {
+      width: auto;
+      min-height: 58px;
+      font-size: .98rem;
+    }
+
     details {
       max-width: 950px;
       margin: 15px auto;
@@ -676,6 +740,14 @@
 
       .snap-points {
         grid-template-columns: 1fr;
+      }
+
+      .program-card .detail-body {
+        padding: 0 22px 24px;
+      }
+
+      .program-card summary {
+        padding: 18px 20px;
       }
 
       .button {
@@ -1402,60 +1474,127 @@
       <h2>Community Programs</h2>
 
       <p class="lead">
+        The Local Co-op works to connect local food with families,
+        schools and communities throughout Cochise County.
         Tap a program to learn more.
       </p>
 
     </div>
 
-    <details>
-      <summary>🥕 Produce Rx</summary>
+    <div class="program-list">
 
-      <div class="detail-body">
-        <p>
-          Produce Rx programs connect eligible community members
-          with fresh fruits and vegetables through healthcare
-          and community partnerships.
-        </p>
-      </div>
-    </details>
+      <details class="program-card">
 
+        <summary>
+          <span class="program-icon" aria-hidden="true">🥕</span>
+          <span class="program-title">Produce Rx</span>
+        </summary>
 
-    <details>
-      <summary>🏫 Farm 2 School</summary>
+        <div class="detail-body">
 
-      <div class="detail-body">
-        <p>
-          The Local Co-op helps connect schools with locally produced
-          food while supporting food education and relationships
-          between students, farms and their community.
-        </p>
-      </div>
-    </details>
+          <p>
+            Produce Rx connects eligible community members with fresh
+            fruits and vegetables through healthcare and community partnerships.
+          </p>
 
+          <p>
+            The program is part of The Local Co-op's work to make nutritious
+            local food easier to access in the community.
+          </p>
 
-    <details>
-      <summary>🚚 Cochise Mobile Market</summary>
+          <div class="program-action">
+            <a class="button" href="tel:+15202612255">
+              ☎ ASK ABOUT PRODUCE RX
+            </a>
+          </div>
 
-      <div class="detail-body">
-        <p>
-          The Mobile Market brings fresh local food to communities
-          throughout Cochise County.
-        </p>
-      </div>
-    </details>
+        </div>
+
+      </details>
 
 
-    <details>
-      <summary>❤️ Food Access & Community Support</summary>
+      <details class="program-card">
 
-      <div class="detail-body">
-        <p>
-          The Local Co-op works with community organizations and
-          food-access programs to help more people obtain
-          nutritious local food.
-        </p>
-      </div>
-    </details>
+        <summary>
+          <span class="program-icon" aria-hidden="true">🏫</span>
+          <span class="program-title">Farm 2 School</span>
+        </summary>
+
+        <div class="detail-body">
+
+          <p>
+            The Local Co-op helps connect schools with locally produced food
+            while supporting food education and relationships between students,
+            farms and their community.
+          </p>
+
+          <p>
+            This work helps bring local agriculture and food education
+            closer to students in the region.
+          </p>
+
+        </div>
+
+      </details>
+
+
+      <details class="program-card">
+
+        <summary>
+          <span class="program-icon" aria-hidden="true">🚚</span>
+          <span class="program-title">Cochise Mobile Market</span>
+        </summary>
+
+        <div class="detail-body">
+
+          <p>
+            The Cochise Mobile Market brings fresh local food to communities
+            throughout Cochise County.
+          </p>
+
+          <p>
+            Stops and times can change, so check the current schedule
+            before heading out.
+          </p>
+
+          <div class="program-action">
+            <a class="button"
+               href="https://www.thelocalcoopaz.com/cochise-mobile-market"
+               target="_blank"
+               rel="noopener">
+              🚚 VIEW MOBILE MARKET SCHEDULE
+            </a>
+          </div>
+
+        </div>
+
+      </details>
+
+
+      <details class="program-card">
+
+        <summary>
+          <span class="program-icon" aria-hidden="true">❤️</span>
+          <span class="program-title">Food Access & Community Support</span>
+        </summary>
+
+        <div class="detail-body">
+
+          <p>
+            The Local Co-op works with community organizations and
+            food-access programs to help more people obtain nutritious local food.
+          </p>
+
+          <p>
+            If you need food assistance, the Community Resources section
+            directly below lists local organizations that may be able to help.
+          </p>
+
+        </div>
+
+      </details>
+
+    </div>
 
   </div>
 
