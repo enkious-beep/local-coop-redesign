@@ -4,52 +4,1080 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>The Local Co-op AZ</title>
+  <title>The Local Co-op | Southern Arizona</title>
+  <meta name="description"
+        content="Fresh local food from Southern Arizona farmers and producers. Shop local, join a Farm Share, and find The Local Co-op in Cochise County.">
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f4ec;
-      color: #222;
-      text-align: center;
+    :root {
+      --green-dark: #294c36;
+      --green: #426b48;
+      --green-light: #e6eee3;
+      --cream: #f7f3e8;
+      --cream-dark: #eee7d5;
+      --gold: #d7a83e;
+      --text: #20251f;
+      --muted: #596057;
+      --white: #ffffff;
+      --max-width: 1100px;
     }
 
-    main {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
+    * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 20px;
+      line-height: 1.65;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.15;
+      margin-top: 0;
+    }
+
     h1 {
-      font-size: clamp(42px, 8vw, 76px);
-      margin-bottom: 15px;
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: var(--green-dark);
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 1.55rem;
+      color: var(--green-dark);
     }
 
     p {
-      font-size: clamp(20px, 3vw, 28px);
-      line-height: 1.6;
+      margin-top: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .section {
+      padding: 85px 24px;
+    }
+
+    .wrap {
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      font-size: clamp(1.2rem, 3vw, 1.55rem);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 24px;
+      text-align: center;
+      background:
+        radial-gradient(circle at top, #ffffff 0%, var(--cream) 60%);
+    }
+
+    .hero-inner {
+      width: min(100%, 950px);
+    }
+
+    .hero-mark {
+      font-size: 4rem;
+      margin-bottom: 5px;
+    }
+
+    .hero h1 {
+      color: var(--green-dark);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      max-width: 760px;
+      margin: 0 auto 35px;
+    }
+
+    /* BUTTONS */
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 64px;
+      padding: 16px 28px;
+      border-radius: 12px;
+      background: var(--green-dark);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border: 3px solid var(--green-dark);
+      transition: transform .15s ease, background .15s ease;
+    }
+
+    .button:hover,
+    .button:focus {
+      background: var(--green);
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--green-dark);
+    }
+
+    .button.secondary:hover,
+    .button.secondary:focus {
+      background: var(--green-light);
+    }
+
+    /* VISIT */
+
+    .visit {
+      background: var(--green-dark);
+      color: var(--white);
+    }
+
+    .visit h2,
+    .visit h3 {
+      color: var(--white);
+    }
+
+    .visit .eyebrow {
+      color: #d9e7d6;
+    }
+
+    .visit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-top: 45px;
+      align-items: start;
+    }
+
+    .hours {
+      background: rgba(255,255,255,.1);
+      padding: 30px;
+      border-radius: 18px;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.2);
+    }
+
+    .hours-row:last-child {
+      border-bottom: 0;
+    }
+
+    .visit .button {
+      background: var(--white);
+      color: var(--green-dark);
+      border-color: var(--white);
+    }
+
+    /* FARM SHARE */
+
+    .farm-share {
+      background: var(--white);
+    }
+
+    .simple-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 45px 0;
+    }
+
+    .simple-card {
+      padding: 30px;
+      border-radius: 18px;
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .simple-card .icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    /* LOCATIONS */
+
+    .locations {
+      background: var(--cream-dark);
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    .location-card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.05);
+    }
+
+    .location-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* MOBILE MARKET */
+
+    .mobile-market {
+      background: var(--gold);
+      color: #252016;
+    }
+
+    .mobile-market h2 {
+      color: #252016;
+    }
+
+    /* PRODUCTS */
+
+    .products {
+      background: var(--white);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .product {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 25px 15px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+
+    .product span {
+      display: block;
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    /* PROGRAMS */
+
+    .programs {
+      background: var(--green-light);
+    }
+
+    details {
+      background: var(--white);
+      margin: 15px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid rgba(41,76,54,.12);
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 22px 25px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      float: right;
+      font-size: 1.5rem;
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    .details-content {
+      padding: 0 25px 25px;
+    }
+
+    /* FARMERS */
+
+    .farmers {
+      background: var(--cream);
+    }
+
+    .farmer-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 35px;
+    }
+
+    .farmer-name {
+      padding: 12px 18px;
+      background: var(--white);
+      border-radius: 999px;
+      font-weight: 700;
+      border: 2px solid var(--cream-dark);
+    }
+
+    /* HELP */
+
+    .food-help {
+      background: var(--green-dark);
+      color: var(--white);
+    }
+
+    .food-help h2 {
+      color: var(--white);
+    }
+
+    .food-help details {
+      color: var(--text);
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: var(--white);
+    }
+
+    /* FAQ */
+
+    .faq {
+      background: var(--cream-dark);
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: var(--green-dark);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .contact h2 {
+      color: var(--white);
+    }
+
+    .contact-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .contact-link {
+      display: block;
+      padding: 30px 15px;
+      background: rgba(255,255,255,.1);
+      border-radius: 16px;
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .contact-link span {
+      display: block;
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      background: #193023;
+      color: #dce6dd;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: .9rem;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+      body {
+        font-size: 19px;
+      }
+
+      .section {
+        padding: 65px 20px;
+      }
+
+      .visit-grid,
+      .simple-cards,
+      .location-grid,
+      .contact-links {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .hours-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <main>
-    <div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+
+      <div class="hero-mark">🌱</div>
+
+      <div class="eyebrow">McNeal, Arizona</div>
+
       <h1>The Local Co-op</h1>
-      <p>
-        Fresh local food from Southern Arizona.
+
+      <p class="hero-subtitle">
+        Fresh local food from Southern Arizona farmers and producers.
+      </p>
+
+      <div class="buttons">
+        <a class="button"
+           href="https://thelocalcoopaz.csaware.com/store/"
+           target="_blank"
+           rel="noopener">
+          🛒 Shop Online
+        </a>
+
+        <a class="button secondary"
+           href="https://thelocalcoopaz.csaware.com/store/"
+           target="_blank"
+           rel="noopener">
+          🥕 Farm Share / CSA
+        </a>
+
+        <a class="button secondary"
+           href="https://thelocalcoopaz.csaware.com/"
+           target="_blank"
+           rel="noopener">
+          👤 Member Login
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- VISIT -->
+  <section class="section visit">
+    <div class="wrap">
+
+      <div class="eyebrow">Come See Us</div>
+      <h2>Visit The Local Co-op</h2>
+
+      <div class="visit-grid">
+
+        <div>
+          <h3>McNeal Retail Hub</h3>
+
+          <p>
+            <strong>9108 US-191<br>
+            McNeal, AZ 85617</strong>
+          </p>
+
+          <p>
+            Local produce, meat, eggs, dairy and more from
+            Southern Arizona growers and producers.
+          </p>
+
+          <p>
+            <strong>Phone:</strong><br>
+            <a href="tel:+15202612255">(520) 261-2255</a>
+          </p>
+
+          <div class="buttons" style="justify-content:flex-start;">
+            <a class="button"
+               href="https://www.google.com/maps/search/?api=1&query=9108+US-191+McNeal+AZ+85617"
+               target="_blank"
+               rel="noopener">
+              📍 Get Directions
+            </a>
+          </div>
+        </div>
+
+        <div class="hours">
+          <h3>Store Hours</h3>
+
+          <!-- VERIFY THESE HOURS WITH OWNER -->
+          <div class="hours-row">
+            <strong>Wednesday</strong>
+            <span>12 PM – 5 PM</span>
+          </div>
+
+          <div class="hours-row">
+            <strong>Thursday</strong>
+            <span>12 PM – 5 PM</span>
+          </div>
+
+          <div class="hours-row">
+            <strong>Friday</strong>
+            <span>9 AM – 5 PM</span>
+          </div>
+
+          <div class="hours-row">
+            <strong>Saturday</strong>
+            <span>9 AM – 3 PM</span>
+          </div>
+
+          <p style="margin-top:20px;font-size:.9rem;">
+            Hours are being verified before this redesign becomes the official website.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FARM SHARE -->
+  <section class="section farm-share">
+    <div class="wrap center">
+
+      <div class="eyebrow">Fresh Food Made Easy</div>
+      <h2>Join a Farm Share</h2>
+
+      <p class="lead">
+        Get a rotating selection of fresh local food while supporting
+        farmers and producers in our community.
+      </p>
+
+      <div class="simple-cards">
+
+        <div class="simple-card">
+          <span class="icon">🥬</span>
+          <h3>Fresh & Local</h3>
+          <p>Seasonal food sourced from local growers and producers.</p>
+        </div>
+
+        <div class="simple-card">
+          <span class="icon">📦</span>
+          <h3>Easy Pickup</h3>
+          <p>Choose from available pickup options in Cochise County.</p>
+        </div>
+
+        <div class="simple-card">
+          <span class="icon">❤️</span>
+          <h3>Support Local</h3>
+          <p>Your food dollars help support local farms and our community.</p>
+        </div>
+
+      </div>
+
+      <div class="buttons">
+        <a class="button"
+           href="https://thelocalcoopaz.csaware.com/store/"
+           target="_blank"
+           rel="noopener">
+          Sign Up for a Farm Share
+        </a>
+
+        <a class="button secondary"
+           href="https://thelocalcoopaz.csaware.com/"
+           target="_blank"
+           rel="noopener">
+          Member Login
+        </a>
+      </div>
+
+      <p style="margin-top:30px;">
+        <strong>SNAP / EBT accepted.</strong>
+        Ask us about available food-access benefits.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- LOCATIONS -->
+  <section class="section locations">
+    <div class="wrap">
+
+      <div class="center">
+        <div class="eyebrow">Find Local Food</div>
+        <h2>Pickup Locations</h2>
+        <p class="lead">
+          Pick up your order at a location that's convenient for you.
+        </p>
+      </div>
+
+      <div class="location-grid">
+
+        <div class="location-card">
+          <h3>📍 McNeal</h3>
+          <p>
+            <strong>The Local Co-op</strong><br>
+            9108 US-191<br>
+            McNeal, AZ 85617
+          </p>
+        </div>
+
+        <div class="location-card">
+          <h3>📍 Bisbee</h3>
+          <p>
+            <strong>Bisbee Farmers Market</strong><br>
+            Vista Park
+          </p>
+          <p>Saturday<br><strong>9 AM – 12 PM</strong></p>
+        </div>
+
+        <div class="location-card">
+          <h3>📍 Douglas</h3>
+          <p>
+            <strong>Blueberry Cafe</strong><br>
+            600 G Ave<br>
+            Douglas, AZ
+          </p>
+          <p>Friday<br><strong>9:30 AM – 10:30 AM</strong></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MOBILE MARKET -->
+  <section class="section mobile-market">
+    <div class="wrap center">
+
+      <div class="eyebrow" style="color:#493a16;">Around Cochise County</div>
+      <h2>Cochise Mobile Market</h2>
+
+      <p class="lead">
+        We bring fresh local food closer to you.
+        The Cochise Mobile Market visits communities throughout the county.
       </p>
 
       <p>
-        🌱 New website coming soon.
+        Mobile Market stops and times may change, so check the current
+        schedule before heading out.
       </p>
+
+      <div class="buttons">
+        <a class="button"
+           href="https://www.thelocalcoopaz.com/cochise-mobile-market"
+           target="_blank"
+           rel="noopener">
+          🚚 See Current Mobile Market Schedule
+        </a>
+      </div>
+
     </div>
-  </main>
+  </section>
+
+
+  <!-- PRODUCTS -->
+  <section class="section products">
+    <div class="wrap center">
+
+      <div class="eyebrow">Shop Local</div>
+      <h2>What You'll Find</h2>
+
+      <p class="lead">
+        Local food and everyday staples from farms, ranches
+        and producers in our region.
+      </p>
+
+      <div class="product-grid">
+
+        <div class="product">
+          <span>🥬</span>
+          Fresh Produce
+        </div>
+
+        <div class="product">
+          <span>🥚</span>
+          Eggs
+        </div>
+
+        <div class="product">
+          <span>🥩</span>
+          Local Meat
+        </div>
+
+        <div class="product">
+          <span>🐟</span>
+          Seafood
+        </div>
+
+        <div class="product">
+          <span>🥛</span>
+          Dairy
+        </div>
+
+        <div class="product">
+          <span>🍯</span>
+          Honey & Local Goods
+        </div>
+
+        <div class="product">
+          <span>☕</span>
+          Local Coffee
+        </div>
+
+        <div class="product">
+          <span>🛒</span>
+          Grocery & Pantry
+        </div>
+
+      </div>
+
+      <div class="buttons">
+        <a class="button"
+           href="https://thelocalcoopaz.csaware.com/store/"
+           target="_blank"
+           rel="noopener">
+          🛒 Shop Online
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FARMERS -->
+  <section class="section farmers">
+    <div class="wrap center">
+
+      <div class="eyebrow">Know Your Food</div>
+      <h2>Meet Our Farmers & Producers</h2>
+
+      <p class="lead">
+        The Local Co-op connects our community with the people
+        who grow, raise and make our food.
+      </p>
+
+      <div class="farmer-list">
+        <span class="farmer-name">Desert Sky Produce</span>
+        <span class="farmer-name">Likha's Veggies</span>
+        <span class="farmer-name">Lutu Muhammad Farm</span>
+        <span class="farmer-name">Weidenthal Family Farm</span>
+        <span class="farmer-name">Milagro Farm</span>
+        <span class="farmer-name">Shanahan Farms</span>
+        <span class="farmer-name">Double Adobe Farm</span>
+        <span class="farmer-name">El Pescado Bravo</span>
+        <span class="farmer-name">Arevalos Farms</span>
+        <span class="farmer-name">Sunset Mushrooms</span>
+        <span class="farmer-name">Chicken Boy Farm</span>
+        <span class="farmer-name">San Pedro Roasters</span>
+        <span class="farmer-name">White Barn Beef</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PROGRAMS -->
+  <section class="section programs">
+    <div class="wrap">
+
+      <div class="center">
+        <div class="eyebrow">More Than a Store</div>
+        <h2>Community Programs</h2>
+
+        <p class="lead">
+          Tap any program below to learn more.
+        </p>
+      </div>
+
+      <details>
+        <summary>🥕 Produce Rx</summary>
+        <div class="details-content">
+          <p>
+            Produce Rx programs help connect eligible community members
+            with fresh fruits and vegetables through healthcare and
+            community partnerships.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>🏫 Farm 2 School</summary>
+        <div class="details-content">
+          <p>
+            The Local Co-op works to connect schools with locally produced
+            food while supporting food education and stronger relationships
+            between students, farms and their community.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>🚚 Mobile Market</summary>
+        <div class="details-content">
+          <p>
+            The Cochise Mobile Market brings fresh food to communities
+            throughout Cochise County, helping make local food easier
+            to reach.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>❤️ Food Access & Community Support</summary>
+        <div class="details-content">
+          <p>
+            The Local Co-op works with community organizations and food
+            assistance programs to help improve access to nutritious food.
+          </p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+
+  <!-- FOOD HELP -->
+  <section class="section food-help">
+    <div class="wrap">
+
+      <div class="center">
+        <div class="eyebrow" style="color:#d9e7d6;">Community Resources</div>
+        <h2>Need Help Getting Food?</h2>
+
+        <p class="lead">
+          Local organizations may be able to help with food assistance.
+        </p>
+      </div>
+
+      <details>
+        <summary>See Local Food Assistance Resources</summary>
+
+        <div class="details-content">
+          <p><strong>Goar Park Lunches</strong> — Bisbee</p>
+          <p><strong>St. Vincent de Paul</strong> — Bisbee</p>
+          <p><strong>Douglas Tabernacle</strong> — Douglas</p>
+          <p><strong>McNeal Food Bank</strong> — McNeal</p>
+          <p><strong>Sunsites Bread Basket</strong> — Pearce</p>
+
+          <p>
+            Contact the organization directly to confirm current
+            availability, dates and requirements.
+          </p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+
+  <!-- SUPPORT -->
+  <section class="section">
+    <div class="wrap center">
+
+      <div class="eyebrow">Make an Impact</div>
+      <h2>Help Feed Our Community</h2>
+
+      <p class="lead">
+        Contributions help support food access, emergency food relief
+        and fresh food distribution in our community.
+      </p>
+
+      <div class="buttons">
+        <a class="button"
+           href="https://www.thelocalcoopaz.com/make-an-impact"
+           target="_blank"
+           rel="noopener">
+          ❤️ Contribute
+        </a>
+      </div>
+
+      <p style="margin-top:25px;font-size:.9rem;">
+        The Local Co-op is not a 501(c)(3). Contributions are not tax deductible.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="section about">
+    <div class="wrap center">
+
+      <div class="eyebrow">Our Community</div>
+      <h2>Farmer Operated.<br>Community Focused.</h2>
+
+      <p class="lead">
+        The Local Co-op connects Southern Arizona farmers and producers
+        with the people who eat their food while working to strengthen
+        food access throughout Cochise County.
+      </p>
+
+      <p>
+        By shopping local, you're helping support regional farms,
+        producers and a stronger local food system.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="section faq">
+    <div class="wrap">
+
+      <div class="center">
+        <div class="eyebrow">Questions?</div>
+        <h2>Common Questions</h2>
+        <p class="lead">Tap a question to see the answer.</p>
+      </div>
+
+      <details>
+        <summary>What is a Farm Share?</summary>
+        <div class="details-content">
+          <p>
+            A Farm Share gives members a rotating selection of local,
+            seasonal food while supporting participating farmers and producers.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Can I use SNAP / EBT?</summary>
+        <div class="details-content">
+          <p>
+            Yes. The Local Co-op accepts SNAP / EBT.
+            Contact the Co-op if you need help with payment options.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Where can I pick up my order?</summary>
+        <div class="details-content">
+          <p>
+            Pickup options currently include McNeal, Bisbee and Douglas.
+            Available locations may depend on your order or Farm Share.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What if I need help with my account or order?</summary>
+        <div class="details-content">
+          <p>
+            Call The Local Co-op at
+            <a href="tel:+15202612255">(520) 261-2255</a>
+            and we'll help you.
+          </p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section class="section contact">
+    <div class="wrap">
+
+      <div class="eyebrow" style="color:#d9e7d6;">We're Here to Help</div>
+      <h2>Need Help?</h2>
+
+      <p class="lead">
+        Give us a call, send us an email or come see us in McNeal.
+      </p>
+
+      <div class="contact-links">
+
+        <a class="contact-link" href="tel:+15202612255">
+          <span>☎️</span>
+          Call Us<br>
+          (520) 261-2255
+        </a>
+
+        <a class="contact-link"
+           href="mailto:info@thelocalcoopaz.com">
+          <span>✉️</span>
+          Email Us
+        </a>
+
+        <a class="contact-link"
+           href="https://www.google.com/maps/search/?api=1&query=9108+US-191+McNeal+AZ+85617"
+           target="_blank"
+           rel="noopener">
+          <span>📍</span>
+          Get Directions
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer>
+    <strong>The Local Co-op</strong><br>
+    9108 US-191 • McNeal, Arizona 85617<br><br>
+
+    Redesign preview — not the official Local Co-op website.
+  </footer>
 
 </body>
 </html>
