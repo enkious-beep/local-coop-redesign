@@ -392,11 +392,89 @@
       background: var(--cream);
     }
 
+    .featured-farmer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-top: 45px;
+      text-align: left;
+    }
+
+    .farmer-card {
+      background: white;
+      border: 2px solid var(--cream-dark);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,.06);
+    }
+
+    .farmer-card img {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+    }
+
+    .farmer-card-content {
+      padding: 28px;
+    }
+
+    .farmer-name {
+      margin: 0 0 4px;
+      color: var(--green);
+      font-size: .9rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .farmer-card h3 {
+      margin-bottom: 14px;
+      font-size: 1.7rem;
+    }
+
+    .farmer-card > .farmer-card-content > p {
+      color: var(--muted);
+    }
+
+    .farmer-card details {
+      max-width: none;
+      margin: 20px 0 0;
+      border: 2px solid var(--sage);
+      border-radius: 12px;
+      box-shadow: none;
+    }
+
+    .farmer-card summary {
+      padding: 18px 20px;
+      font-size: 1rem;
+    }
+
+    .farmer-card .detail-body {
+      padding: 0 20px 20px;
+      font-size: .95rem;
+    }
+
+    .more-farmers {
+      margin-top: 65px;
+    }
+
+    .more-farmers h3 {
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 1.8rem;
+    }
+
+    .more-farmers-intro {
+      max-width: 720px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      text-align: center;
+    }
+
     .farmer-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 15px;
-      margin-top: 40px;
     }
 
     .farmer {
@@ -579,6 +657,10 @@
         grid-template-columns: 1fr;
       }
 
+      .featured-farmer-grid {
+        grid-template-columns: 1fr;
+      }
+
       .farmer-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -610,6 +692,10 @@
       .farmer-grid,
       .product-grid {
         grid-template-columns: 1fr;
+      }
+
+      .farmer-card img {
+        height: 280px;
       }
 
       .snap-box {
@@ -1076,40 +1162,220 @@
 
 <section class="section farmers">
 
-  <div class="wrap center">
+  <div class="wrap">
 
-    <div class="eyebrow">Know Your Food</div>
+    <div class="center">
 
-    <h2>Our Farmers & Producers</h2>
+      <div class="eyebrow">Know Your Food</div>
 
-    <p class="lead">
-      Meet some of the farms, ranches and producers
-      helping feed our community.
-    </p>
+      <h2>Our Farmers & Producers</h2>
 
-    <div class="farmer-grid">
+      <p class="lead">
+        Meet some of the people growing, raising and producing
+        food for our Southern Arizona community.
+      </p>
 
-      <div class="farmer">Desert Sky Produce</div>
-      <div class="farmer">Likha's Veggies</div>
-      <div class="farmer">Lutu Muhammad Farm</div>
+    </div>
 
-      <div class="farmer">Weidenthal Family Farm</div>
-      <div class="farmer">Milagro Farm</div>
-      <div class="farmer">Shanahan Farms</div>
+    <div class="featured-farmer-grid">
 
-      <div class="farmer">Double Adobe Farm</div>
-      <div class="farmer">El Pescado Bravo</div>
-      <div class="farmer">Arevalos Farms</div>
+      <article class="farmer-card">
 
-      <div class="farmer">Sunset Mushrooms</div>
-      <div class="farmer">Chicken Boy Farm</div>
-      <div class="farmer">San Pedro Roasters</div>
+        <img src="images/farmer-desert-sky-produce.webp"
+             alt="John of Desert Sky Produce"
+             loading="lazy">
 
-      <div class="farmer">White Barn Beef</div>
-      <div class="farmer">Faith Life Ranch</div>
-      <div class="farmer">Bonita Valley Farm & Ranch</div>
+        <div class="farmer-card-content">
 
-      <div class="farmer">Bulletproof Honey Co.</div>
+          <div class="farmer-name">John</div>
+          <h3>Desert Sky Produce</h3>
+
+          <p>
+            A McNeal farm helping strengthen local food access
+            and opportunities for small producers throughout Cochise County.
+          </p>
+
+          <details>
+            <summary>MEET THE FARMER</summary>
+
+            <div class="detail-body">
+              <p>
+                John Benedict moved to McNeal in 2018 and founded
+                Desert Sky Produce in late 2020. Seeing the need for
+                stronger local food access and better outlets for small
+                farmers, ranchers and producers, he went on to co-found
+                The Local Co-op.
+              </p>
+
+              <p>
+                His community work has included produce-prescription
+                programs, the McNeal food bank, the Cochise Mobile Market
+                and Cochise Farm to School, connecting local agriculture
+                with food access, education and community health.
+              </p>
+            </div>
+
+          </details>
+
+        </div>
+
+      </article>
+
+
+      <article class="farmer-card">
+
+        <img src="images/farmer-likhas-veggies.webp"
+             alt="Jillian of Likha's Veggies"
+             loading="lazy">
+
+        <div class="farmer-card-content">
+
+          <div class="farmer-name">Jillian</div>
+          <h3>Likha's Veggies</h3>
+
+          <p>
+            A growing local farm built from hands-on learning,
+            community roots and a love of fresh produce.
+          </p>
+
+          <details>
+            <summary>MEET THE FARMER</summary>
+
+            <div class="detail-body">
+              <p>
+                Jillian's farming journey began in 2021 while volunteering
+                at the Seven Arrows Recovery community garden. She later
+                leased her own plot and began sharing what she grew at the
+                Bisbee Farmers Market.
+              </p>
+
+              <p>
+                After apprenticing with local farms and learning both the
+                art and science of sustainable agriculture, she began
+                building Likha's Veggies into a thriving 2-acre farm
+                focused on feeding the community.
+              </p>
+            </div>
+
+          </details>
+
+        </div>
+
+      </article>
+
+
+      <article class="farmer-card">
+
+        <img src="images/farmer-lutu-muhammad.webp"
+             alt="Saudi of Lutu Muhammad Farm"
+             loading="lazy">
+
+        <div class="farmer-card-content">
+
+          <div class="farmer-name">Saudi</div>
+          <h3>Lutu Muhammad Farm</h3>
+
+          <p>
+            A first-generation family produce farm growing
+            salad greens, herbs and grains with an emphasis on clean cultivation.
+          </p>
+
+          <details>
+            <summary>MEET THE FARMER</summary>
+
+            <div class="detail-body">
+              <p>
+                Saudi and his family operate Lutu Muhammad Farm, a
+                first-generation family-owned produce farm focused on
+                lettuce and salad greens, herbs and grains.
+              </p>
+
+              <p>
+                According to the farm's Local Co-op profile, they do not
+                use synthetic pesticides and do not plant non-GMO seeds,
+                reflecting their focus on producing food they consider
+                pure, clean and nourishing.
+              </p>
+            </div>
+
+          </details>
+
+        </div>
+
+      </article>
+
+
+      <article class="farmer-card">
+
+        <img src="images/farmer-weidenthal-family.webp"
+             alt="Weedy and the Weidenthal Family Farm"
+             loading="lazy">
+
+        <div class="farmer-card-content">
+
+          <div class="farmer-name">Weedy & Family</div>
+          <h3>Weidenthal Family Farm</h3>
+
+          <p>
+            A family farm near the San Pedro River raising poultry and
+            heritage pigs while developing a regenerative permaculture orchard.
+          </p>
+
+          <details>
+            <summary>MEET THE FARMER</summary>
+
+            <div class="detail-body">
+              <p>
+                Weidenthal Family Farm began as a small backyard operation
+                in spring 2020 with Pekin ducks and Jumbo quail. It later
+                expanded to 20 acres near the San Pedro River in Sierra Vista.
+              </p>
+
+              <p>
+                The family focuses on regenerative agriculture and is
+                developing a 2-acre permaculture orchard. Ducks and chickens
+                graze among the orchard rows, while heritage pigs help clear
+                low shrubs in areas planned for future expansion.
+              </p>
+            </div>
+
+          </details>
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <div class="more-farmers">
+
+      <h3>More Local Farmers & Producers</h3>
+
+      <p class="more-farmers-intro">
+        The Local Co-op also works with farms, ranches and producers
+        throughout the region.
+      </p>
+
+      <div class="farmer-grid">
+
+        <div class="farmer">Milagro Farm</div>
+        <div class="farmer">Shanahan Farms</div>
+        <div class="farmer">Double Adobe Farm</div>
+
+        <div class="farmer">El Pescado Bravo</div>
+        <div class="farmer">Arevalos Farms</div>
+        <div class="farmer">Sunset Mushrooms</div>
+
+        <div class="farmer">Chicken Boy Farm</div>
+        <div class="farmer">San Pedro Roasters</div>
+        <div class="farmer">White Barn Beef</div>
+
+        <div class="farmer">Faith Life Ranch</div>
+        <div class="farmer">Bonita Valley Farm & Ranch</div>
+        <div class="farmer">Bulletproof Honey Co.</div>
+
+      </div>
 
     </div>
 
