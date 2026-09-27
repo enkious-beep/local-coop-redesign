@@ -655,7 +655,7 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 18px;
       margin-top: 40px;
     }
@@ -696,6 +696,12 @@
     }
 
     /* MOBILE */
+
+    @media (max-width: 1050px) and (min-width: 851px) {
+      .contact-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
     @media (max-width: 850px) {
 
@@ -1825,7 +1831,7 @@
     <h2>Need Help?</h2>
 
     <p class="lead">
-      Call us, email us or come see us in McNeal.
+      Call, email, get directions or follow The Local Co-op online.
     </p>
 
     <div class="contact-grid">
@@ -1859,6 +1865,32 @@
         <span>📍</span>
 
         GET DIRECTIONS
+
+      </a>
+
+
+      <a class="contact-card"
+         href="https://www.facebook.com/localcoopaz"
+         target="_blank"
+         rel="noopener"
+         aria-label="Visit The Local Co-op on Facebook">
+
+        <span aria-hidden="true">📘</span>
+
+        FACEBOOK
+
+      </a>
+
+
+      <a class="contact-card"
+         href="https://www.instagram.com/thelocalcoopaz/"
+         target="_blank"
+         rel="noopener"
+         aria-label="Visit The Local Co-op on Instagram">
+
+        <span aria-hidden="true">📸</span>
+
+        INSTAGRAM
 
       </a>
 
