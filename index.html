@@ -756,6 +756,36 @@
       border-radius: 8px;
     }
 
+
+    /* ACCESSIBILITY POLISH */
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 4px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    .contact-card:focus-visible,
+    .button:focus-visible {
+      outline: 4px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
     /* MOBILE */
 
     @media (max-width: 1050px) and (min-width: 851px) {
@@ -875,7 +905,8 @@
       <a class="button"
          href="https://thelocalcoopaz.csaware.com/store/"
          target="_blank"
-         rel="noopener">
+         rel="noopener"
+         aria-label="Shop online (opens in a new tab)">
         🛒 SHOP ONLINE
       </a>
 
@@ -2075,7 +2106,7 @@
          href="https://www.facebook.com/localcoopaz"
          target="_blank"
          rel="noopener"
-         aria-label="Visit The Local Co-op on Facebook">
+         aria-label="Visit The Local Co-op on Facebook (opens in a new tab)">
 
         <span aria-hidden="true">📘</span>
 
@@ -2088,7 +2119,7 @@
          href="https://www.instagram.com/thelocalcoopaz/"
          target="_blank"
          rel="noopener"
-         aria-label="Visit The Local Co-op on Instagram">
+         aria-label="Visit The Local Co-op on Instagram (opens in a new tab)">
 
         <span aria-hidden="true">📸</span>
 
