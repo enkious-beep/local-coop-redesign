@@ -670,6 +670,50 @@
       color: #dbe9d8;
     }
 
+    .policy-list {
+      max-width: 950px;
+      margin: 40px auto 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .policy-card {
+      background: var(--white);
+      border: 1px solid var(--cream-dark);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(23, 50, 34, .06);
+    }
+
+    .policy-card summary {
+      min-height: 78px;
+      padding: 18px 22px;
+      cursor: pointer;
+      font-size: 1.08rem;
+      font-weight: 900;
+      color: var(--forest-dark);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .policy-card summary:hover,
+    .policy-card summary:focus-visible {
+      background: var(--sage);
+    }
+
+    .policy-card .detail-body {
+      padding: 0 22px 24px;
+    }
+
+    .policy-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      background: var(--cream);
+      border-left: 5px solid var(--gold);
+      border-radius: 10px;
+    }
+
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -1871,6 +1915,110 @@
 
   </div>
 
+</section>
+
+
+
+<!-- POLICIES -->
+
+<section class="section" id="policies">
+  <div class="wrap">
+
+    <div class="center">
+      <div class="eyebrow">Good to Know</div>
+      <h2>Policies &amp; Important Information</h2>
+      <p class="lead">
+        Quick answers about Farm Share changes, missed pickups and SNAP/EBT.
+        Tap a topic to read more.
+      </p>
+    </div>
+
+    <div class="policy-list">
+
+      <details class="policy-card">
+        <summary>⏸️ Pausing or Canceling a Farm Share</summary>
+        <div class="detail-body">
+          <p>
+            Farm Share members can pause or cancel their subscription by logging
+            into their account and changing their membership settings.
+          </p>
+          <div class="policy-note">
+            <strong>Before launch:</strong> Exact change and cancellation cut-off
+            times still need to be confirmed with The Local Co-op.
+          </div>
+        </div>
+      </details>
+
+      <details class="policy-card">
+        <summary>🧺 Missed Farm Share Pickup</summary>
+        <div class="detail-body">
+          <p>
+            If you miss your pickup window, contact The Local Co-op as soon as
+            possible to ask about an alternate pickup time or location.
+          </p>
+          <p>
+            If you know you will be out of town or unable to pick up your share,
+            please give at least <strong>24 hours notice</strong>.
+          </p>
+          <p>
+            Unclaimed shares are donated to Food Bank partners and are
+            <strong>non-refundable</strong>.
+          </p>
+        </div>
+      </details>
+
+      <details class="policy-card">
+        <summary>💳 SNAP/EBT Farm Share Holds</summary>
+        <div class="detail-body">
+          <p>
+            SNAP customers can place a Farm Share on hold by not entering their
+            PIN for the weeks they want to hold. Those weeks are not charged.
+          </p>
+          <p>
+            If you are unsure how to do this, contact The Local Co-op in advance
+            so the team can help adjust your account.
+          </p>
+        </div>
+      </details>
+
+      <details class="policy-card">
+        <summary>🏪 Paying with EBT in Person</summary>
+        <div class="detail-body">
+          <p>
+            Customers who prefer not to use their SNAP card online can select
+            <strong>“EBT (Pay in Person)”</strong> at checkout and bring their
+            EBT card to pickup.
+          </p>
+        </div>
+      </details>
+
+      <details class="policy-card">
+        <summary>💵 SNAP + Card Split Payments</summary>
+        <div class="detail-body">
+          <p>
+            Eligible purchases can be split between SNAP benefits and a credit
+            or debit card. SNAP covers eligible items and the remaining balance,
+            if any, can be paid by card.
+          </p>
+        </div>
+      </details>
+
+      <details class="policy-card">
+        <summary>❓ Need Help?</summary>
+        <div class="detail-body">
+          <p>
+            Questions about your Farm Share, pickup, payment or account?
+            Contact The Local Co-op before your pickup whenever possible.
+          </p>
+          <p>
+            <strong>Phone:</strong> (520) 261-2255<br>
+            <strong>Email:</strong> info@thelocalcoopaz.com
+          </p>
+        </div>
+      </details>
+
+    </div>
+  </div>
 </section>
 
 
