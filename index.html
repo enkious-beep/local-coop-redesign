@@ -374,6 +374,67 @@
       color: #292216;
     }
 
+
+    /* MOBILE MARKET DETAILS */
+
+    .mobile-market-details {
+      background: var(--cream);
+    }
+
+    .mobile-market-logo {
+      width: min(100%, 560px);
+      height: auto;
+      margin: 0 auto 35px;
+    }
+
+    .mobile-market-info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .mobile-market-info-card {
+      background: white;
+      border: 2px solid var(--cream-dark);
+      border-radius: 18px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .mobile-market-info-card span {
+      display: block;
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    .upcoming-stops {
+      max-width: 900px;
+      margin: 45px auto 0;
+      padding: 34px;
+      background: white;
+      border: 3px solid var(--sage);
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .upcoming-stops h3 {
+      margin-bottom: 12px;
+    }
+
+    .schedule-status {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 12px;
+      background: var(--sage);
+      color: var(--forest-dark);
+      border-radius: 8px;
+      font-size: .85rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
     /* PRODUCTS */
 
     .products {
@@ -819,7 +880,8 @@
 
       .farm-grid,
       .location-grid,
-      .contact-grid {
+      .contact-grid,
+      .mobile-market-info-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1276,11 +1338,8 @@
 
     <div class="buttons" style="justify-content:flex-start;">
 
-      <a class="button"
-         href="https://www.thelocalcoopaz.com/cochise-mobile-market"
-         target="_blank"
-         rel="noopener">
-        🚚 SEE CURRENT SCHEDULE
+      <a class="button" href="#mobile-market-details">
+        🚚 LEARN MORE &amp; SEE UPCOMING STOPS
       </a>
 
     </div>
@@ -1292,6 +1351,85 @@
        aria-label="Cochise Mobile Market">
   </div>
 
+</section>
+
+
+<!-- MOBILE MARKET DETAILS -->
+
+<section class="section mobile-market-details" id="mobile-market-details">
+  <div class="wrap">
+
+    <div class="center">
+      <img class="mobile-market-logo"
+           src="images/cochise-mobile-market.webp"
+           alt="Cochise Mobile Market"
+           loading="lazy">
+
+      <div class="eyebrow">We Bring the Farm to You</div>
+      <h2>Cochise Mobile Market</h2>
+
+      <p class="lead">
+        The Cochise Mobile Market brings fresh, local food into communities
+        throughout Cochise County. Think of it as a farmers market on the go,
+        connecting neighbors with seasonal produce, grocery items and locally
+        sourced favorites.
+      </p>
+    </div>
+
+    <div class="mobile-market-info-grid">
+
+      <div class="mobile-market-info-card">
+        <span aria-hidden="true">🥕</span>
+        <h3>Fresh Local Food</h3>
+        <p>
+          Shop seasonal produce, grocery items and locally sourced foods
+          while supporting local farmers and producers.
+        </p>
+      </div>
+
+      <div class="mobile-market-info-card">
+        <span aria-hidden="true">💳</span>
+        <h3>Ways to Pay</h3>
+        <p>
+          Mobile Market events have accepted cash, debit and SNAP/EBT.
+          Current payment options should be confirmed for each stop.
+        </p>
+      </div>
+
+      <div class="mobile-market-info-card">
+        <span aria-hidden="true">🤝</span>
+        <h3>Bring the Market to You</h3>
+        <p>
+          Schools, organizations and neighborhoods can contact The Local Co-op
+          to explore Mobile Market partnership opportunities.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="upcoming-stops">
+      <span class="schedule-status">Schedule Update Pending</span>
+      <h3>Upcoming Mobile Market Stops</h3>
+
+      <p>
+        The Mobile Market schedule changes throughout the year.
+        We are waiting for the current schedule before publishing upcoming
+        dates, times and locations here.
+      </p>
+
+      <p>
+        <strong>No old event dates are being shown.</strong>
+      </p>
+
+      <div class="buttons">
+        <a class="button" href="tel:+15202612255">☎ CALL FOR CURRENT STOPS</a>
+        <a class="button outline" href="mailto:info@thelocalcoopaz.com">
+          ✉ EMAIL THE CO-OP
+        </a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 
@@ -1693,11 +1831,8 @@
           </p>
 
           <div class="program-action">
-            <a class="button"
-               href="https://www.thelocalcoopaz.com/cochise-mobile-market"
-               target="_blank"
-               rel="noopener">
-              🚚 VIEW MOBILE MARKET SCHEDULE
+            <a class="button" href="#mobile-market-details">
+              🚚 MOBILE MARKET INFO &amp; UPCOMING STOPS
             </a>
           </div>
 
