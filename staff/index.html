@@ -146,13 +146,42 @@ button:disabled { opacity: .55; cursor: wait; }
           👥 Employee Management
           <small>Coming soon</small>
         </div>
-        <div class="tile disabled">
-          📋 Employee Activity Logs
-          <small>Coming soon</small>
+<button class="tile" id="activityLogsButton" type="button">
+  📋 Employee Activity Logs
+  <small>View employee changes and history</small>
+</button>
         </div>
       </div>
     </div>
   </section>
+
+  
+<section id="activityPanel" class="panel" hidden>
+  <div class="toolbar">
+    <h2>Employee Activity Logs</h2>
+    <button id="closeActivity" type="button">Back to Dashboard</button>
+  </div>
+
+  <p>Recent product and tag changes made by employees.</p>
+
+  <button id="refreshActivity" type="button">Refresh Logs</button>
+
+  <div style="overflow-x:auto; margin-top:20px;">
+    <table style="width:100%; border-collapse:collapse; text-align:left;">
+      <thead>
+        <tr>
+          <th style="padding:12px;">Date / Time</th>
+          <th style="padding:12px;">Employee</th>
+          <th style="padding:12px;">Action</th>
+          <th style="padding:12px;">Record</th>
+        </tr>
+      </thead>
+      <tbody id="activityRows"></tbody>
+    </table>
+  </div>
+
+  <p id="activityStatus" role="status"></p>
+</section>
 
   <p id="message" role="status" aria-live="polite"></p>
 </main>
@@ -176,6 +205,8 @@ function showLogin() {
   loginPanel.hidden = false;
   dashboard.hidden = true;
   adminTools.hidden = true;
+  document.getElementById("activityPanel").hidden = true;
+  verifiedAdmin = false;
 }
 
 function showMessage(text) {
@@ -281,6 +312,106 @@ document.getElementById("logout")
     if (db) await db.auth.signOut();
     showLogin();
     showMessage("");
+  });
+
+  
+const activityPanel = document.getElementById("activityPanel");
+const activityRows = document.getElementById("activityRows");
+const activityStatus = document.getElementById("activityStatus");
+
+let verifiedAdmin = false;
+
+async function openActivityLogs() {
+  // Check the current account's permissions again.
+  const { data: authData, error: authError } =
+    await db.auth.getUser();
+
+  if (authError || !authData.user) {
+    showMessage("Please sign in again.");
+    return;
+  }
+
+  const { data: profile, error: profileError } = await db
+    .from("employee_profiles")
+    .select("role, active")
+    .eq("id", authData.user.id)
+    .single();
+
+  if (
+    profileError ||
+    !profile ||
+    profile.active !== true ||
+    profile.role !== "admin"
+  ) {
+    showMessage("Administrator access required.");
+    return;
+  }
+
+  verifiedAdmin = true;
+  dashboard.hidden = true;
+  activityPanel.hidden = false;
+  await loadActivityLogs();
+}
+
+async function loadActivityLogs() {
+  if (!verifiedAdmin || !db) return;
+
+  activityRows.replaceChildren();
+  activityStatus.textContent = "Loading activity logs...";
+
+  const { data, error } = await db
+    .from("employee_activity_logs")
+    .select("created_at, employee_email, action, table_name, record_id")
+    .order("created_at", { ascending: false })
+    .limit(100);
+
+  if (error) {
+    activityStatus.textContent =
+      "Unable to load activity logs: " + error.message;
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    activityStatus.textContent = "No activity recorded yet.";
+    return;
+  }
+
+  for (const entry of data) {
+    const row = document.createElement("tr");
+
+    const values = [
+      new Date(entry.created_at).toLocaleString(),
+      entry.employee_email || "Unknown",
+      (entry.action || "").toUpperCase(),
+      (entry.table_name || "") + " #" + (entry.record_id || "")
+    ];
+
+    for (const value of values) {
+      const cell = document.createElement("td");
+      cell.textContent = value;
+      cell.style.padding = "12px";
+      cell.style.borderBottom = "1px solid #355444";
+      row.appendChild(cell);
+    }
+
+    activityRows.appendChild(row);
+  }
+
+  activityStatus.textContent =
+    "Showing the latest " + data.length + " activities.";
+}
+
+document.getElementById("activityLogsButton")
+  .addEventListener("click", openActivityLogs);
+
+document.getElementById("refreshActivity")
+  .addEventListener("click", loadActivityLogs);
+
+document.getElementById("closeActivity")
+  .addEventListener("click", function() {
+    verifiedAdmin = false;
+    activityPanel.hidden = true;
+    dashboard.hidden = false;
   });
 
 initialize();
