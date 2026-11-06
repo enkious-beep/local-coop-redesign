@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Staff Portal | The Local Co-op AZ</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+:root {
+  color-scheme: dark;
+  font-family: Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #101b17;
+  color: #f3f7f4;
+}
+header {
+  background: #19392c;
+  padding: 22px;
+  text-align: center;
+}
+h1 { margin: 0 0 6px; font-size: 27px; }
+header p { margin: 0; color: #c9dfd1; }
+main { max-width: 900px; margin: 35px auto; padding: 18px; }
+.panel {
+  background: #1b2c24;
+  border: 1px solid #355444;
+  border-radius: 14px;
+  padding: 25px;
+}
+.login { max-width: 430px; margin: auto; }
+label { display: block; margin: 18px 0 6px; }
+input {
+  width: 100%;
+  padding: 14px;
+  background: #0f1a15;
+  color: white;
+  border: 1px solid #63816e;
+  border-radius: 8px;
+  font-size: 16px;
+}
+button, .tile {
+  display: block;
+  padding: 16px;
+  border: 0;
+  border-radius: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+button {
+  background: #81cb94;
+  color: #102418;
+}
+.login button { width: 100%; margin-top: 22px; }
+button:hover, .tile:hover { filter: brightness(1.12); }
+button:disabled { opacity: .55; cursor: wait; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.tile {
+  background: #294d39;
+  color: white;
+  min-height: 115px;
+}
+.tile small {
+  display: block;
+  margin-top: 10px;
+  font-weight: normal;
+  color: #c9dfd1;
+}
+.tile.disabled {
+  background: #303b35;
+  color: #aebbb1;
+  cursor: default;
+}
+.tile.disabled:hover { filter: none; }
+.toolbar {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#logout { background: #c8d5cc; }
+#message { color: #ffc4b7; min-height: 22px; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <h1>The Local Co-op AZ</h1>
+  <p>Private Staff Portal</p>
+</header>
+
+<main>
+  <section id="loginPanel" class="panel login" hidden>
+    <h2>Employee Login</h2>
+    <p>Authorized employees only.</p>
+    <form id="loginForm">
+      <label for="email">Email Address</label>
+      <input id="email" type="email" autocomplete="username" required>
+
+      <label for="password">Password</label>
+      <input id="password" type="password"
+             autocomplete="current-password" required>
+
+      <button id="loginButton" type="submit">Sign In</button>
+    </form>
+  </section>
+
+  <section id="dashboard" class="panel" hidden>
+    <div class="toolbar">
+      <div>
+        <h2>Staff Dashboard</h2>
+        <p id="welcome"></p>
+        <p id="roleDisplay"></p>
+      </div>
+      <button id="logout" type="button">Log Out</button>
+    </div>
+
+    <div class="grid">
+      <a class="tile"
+         href="https://enkious-beep.github.io/coop-tag-maker/">
+        🏷️ Price Tag Maker
+        <small>Open the existing working application</small>
+      </a>
+
+      <div class="tile disabled">
+        📷 Purchasing Scanner
+        <small>Coming soon — integration pending</small>
+      </div>
+    </div>
+
+    <div id="adminTools" hidden>
+      <h2>Administrator Tools</h2>
+      <div class="grid">
+        <div class="tile disabled">
+          👥 Employee Management
+          <small>Coming soon</small>
+        </div>
+        <div class="tile disabled">
+          📋 Employee Activity Logs
+          <small>Coming soon</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p id="message" role="status" aria-live="polite"></p>
+</main>
+
+<script>
+const SUPABASE_URL =
+  "https://wejamrklsvlwixjghqor.supabase.co";
+
+// PASTE YOUR PUBLISHABLE KEY BETWEEN THESE QUOTES:
+const SUPABASE_KEY = "sb_publishable_pPtSuCMGsSbTYU-HWv5Ksg_wlYIKGOs";
+
+const loginPanel = document.getElementById("loginPanel");
+const dashboard = document.getElementById("dashboard");
+const adminTools = document.getElementById("adminTools");
+const message = document.getElementById("message");
+const loginButton = document.getElementById("loginButton");
+
+let db;
+
+function showLogin() {
+  loginPanel.hidden = false;
+  dashboard.hidden = true;
+  adminTools.hidden = true;
+}
+
+function showMessage(text) {
+  message.textContent = text;
+}
+
+async function loadDashboard() {
+  const { data: userData, error: userError } =
+    await db.auth.getUser();
+
+  if (userError || !userData.user) {
+    showLogin();
+    return;
+  }
+
+  const user = userData.user;
+
+  const { data: profile, error } = await db
+    .from("employee_profiles")
+    .select("display_name, role, active")
+    .eq("id", user.id)
+    .single();
+
+  if (error || !profile || profile.active !== true) {
+    await db.auth.signOut();
+    showLogin();
+    showMessage("This account is not authorized for staff access.");
+    return;
+  }
+
+  const isAdmin = profile.role === "admin";
+
+  document.getElementById("welcome").textContent =
+    "Welcome, " + (profile.display_name || user.email);
+
+  document.getElementById("roleDisplay").textContent =
+    isAdmin ? "Administrator" : "Employee";
+
+  adminTools.hidden = !isAdmin;
+  loginPanel.hidden = true;
+  dashboard.hidden = false;
+  showMessage("");
+}
+
+async function initialize() {
+  if (SUPABASE_KEY === "sb_publishable_pPtSuCMGsSbTYU-HWv5Ksg_wlYIKGOs") {
+    showMessage("Setup required: add your Supabase publishable key.");
+    return;
+  }
+
+  if (!window.supabase) {
+    showMessage("Unable to load the Supabase library.");
+    return;
+  }
+
+  db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  try {
+    await loadDashboard();
+  } catch (error) {
+    showLogin();
+    showMessage("Unable to connect. Please try again.");
+  }
+}
+
+document.getElementById("loginForm")
+  .addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    if (!db) return;
+
+    loginButton.disabled = true;
+    showMessage("");
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    try {
+      const { error } = await db.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        showMessage("Sign-in failed. Check your email and password.");
+        return;
+      }
+
+      document.getElementById("password").value = "";
+      await loadDashboard();
+    } catch (error) {
+      showMessage("Connection error. Please try again.");
+    } finally {
+      loginButton.disabled = false;
+    }
+  });
+
+document.getElementById("logout")
+  .addEventListener("click", async function() {
+    if (db) await db.auth.signOut();
+    showLogin();
+    showMessage("");
+  });
+
+initialize();
+</script>
+</body>
+</html>
