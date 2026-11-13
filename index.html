@@ -201,6 +201,26 @@
     }
 
 
+
+    /* Homepage hero: always center the four actions as a 2-by-2 grid. */
+    .hero .buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: min(100%, 660px);
+      margin: 30px auto 0;
+      gap: 15px;
+      justify-content: initial;
+    }
+    .hero .buttons > .button {
+      width: 100%;
+      min-width: 0;
+      padding: 16px 12px;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .hero .buttons { grid-template-columns: 1fr; }
+    }
+
     /* Featured donation button in homepage hero */
     .hero .button.donate {
       background: var(--gold);
